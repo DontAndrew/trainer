@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>Document</title>
+</head>
+
+<body style="background-color: #f5f5f5;">
+    <!--message alerts-->
+    <div class="d-flex justify-content-center fixed-top pt-3">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </div>
+
+    <!--login form-->
+    <div class="d-flex vh-100 justify-content-center align-items-center">
+        <form class="col-3 text-center" method="POST" action="">
+            {{ login_form.hidden_tag() }}
+            <fieldset>
+                <legend class="h3 font-weight-normal pb-4">Sign in</legend>
+                <div class="m-0 form-group">
+                    {{ login_form.email.label(class="sr-only") }}
+                    {% if login_form.email.errors %}
+                    {{ login_form.email(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in login_form.email.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor%}
+                    </div>
+                    {% else %}
+                    {{ login_form.email(class="form-control form-control-md", placeholder="Email address") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ login_form.password.label(class="sr-only") }}
+                    {% if login_form.password.errors %}
+                    {{ login_form.password(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in login_form.password.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor%}
+                    </div>
+                    {% else %}
+                    {{ login_form.password(class="form-control form-control-md", placeholder="Password") }}
+                    {% endif %}
+                </div>
+                <div class="mt-1 form-group">
+                    {{ login_form.submit(class="btn btn-lg btn-primary btn-block")}}
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
+</body>
+
+</html>

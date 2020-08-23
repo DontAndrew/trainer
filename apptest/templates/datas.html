@@ -1,0 +1,18 @@
+{% extends "_layout.html" %}
+
+{% block content%}
+<table>
+    <tr>
+        <th>Project Key</th>
+        <th>Project Title</th>
+        <th>Approved Budget</th>
+    </tr>
+    {% for data in datas | sort(attribute='id', reverse=True) %}
+    <tr>
+        <td><a href="{{ url_for('projects.proj', proj_id=data.id)}}">{{ data.proj_key }}</a></td>
+        <td>{{ data.proj_title }}</td>
+        <td>{{ data.aprvd_budget }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

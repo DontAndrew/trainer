@@ -1,0 +1,42 @@
+{% extends "_layout.html" %}
+
+{% block content %}
+<table>
+    <tr>
+        <th>Project Key</th>
+        <th>Project Title</th>
+        <th>Approved Budget</th>
+    </tr>
+    <tr>
+        <td>{{ proj.proj_key }}</td>
+        <td>{{ proj.proj_title }}</td>
+        <td>{{ proj.aprvd_budget }}</td>
+    </tr>
+</table>
+<div>
+    <a class="btn btn-sm btn-outline-primary m-1" href="{{ url_for('projects.proj_update', proj_id=proj.id)}}">Update
+        Fields</a>
+    <button type="button" class="btn btn-sm btn-outline-danger m-1" data-toggle="modal"
+        data-target="#deleteModal">Delete Project</button>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Delete Project?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <form action="{{ url_for('projects.delete_project', proj_id=proj.id)}}" method="POST">
+                    <input class="btn btn-danger" type="submit" value="Delete">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

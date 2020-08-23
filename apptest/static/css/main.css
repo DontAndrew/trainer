@@ -1,0 +1,14 @@
+body{
+    background-color: black;
+}
+
+.flex-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-item {
+    width: 25%;
+}

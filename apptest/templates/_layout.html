@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    {% if title %}
+    <title>{{ title }} - Test App</title>
+    {% else %}
+    <title>Index</title>
+    {% endif %}
+
+</head>
+
+<body>
+    <!--Error Handling for every page-->
+    <div class=" fixed-top container justify-content-center col-md-2 text-center p-1">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }} p-1">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </div>
+
+    <!--top nav-->
+    <nav class="navbar navbar-dark sticky-top flex-md-nowrap p-0" style="background-color: #563d7c;">
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Test</a>
+        <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+                <a class="nav-link" href="{{ url_for('users.logout') }}">Logout</a>
+            </li>
+        </ul>
+    </nav>
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <!--side nav-->
+            <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: #563d7c;"
+                                href="{{ url_for('main.dashboard')}}">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: #563d7c;" href="{{ url_for('main.datas') }}">Data</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: #563d7c;" href="#">dummy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: #563d7c;" href="#">dummy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: #563d7c;" href=" #">dummy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: #563d7c;" href=" #">dummy</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+                <!-- CONTENT TITLE-->
+                {% block content_title %}
+                <div
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                    <h1 class="h2">{{ title }}</h1>
+                    <div class="btn-toolbar mb-2 mb-md-0">
+                        <div class="btn-group mr-2">
+                            <button class="btn btn-sm btn-outline-secondary">dummy</button>
+                        </div>
+                        <div>
+                            <button class="btn btn-sm btn-outline-secondary">
+                                <a class="text-dark" href="{{ url_for('projects.add_data')}}">Add Data</a>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+                {% endblock %}
+
+                <!-- CONTENT-->
+                {% block content %} {% endblock %}
+            </main>
+        </div>
+    </div>
+    <footer class="py-1 text-white-50 fixed-bottom" style="background-color: #563d7c;">
+        <div class="container text-center">
+            <small>Copyright &copy; Your Website</small>
+        </div>
+    </footer>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

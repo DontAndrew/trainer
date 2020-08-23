@@ -1,0 +1,59 @@
+{% extends "_layout.html" %}
+
+{% block content %}
+<form class="col-3 text-center" method="POST" action="">
+    {{ proj_data_form.hidden_tag() }}
+    <fieldset>
+        <legend class="h3 font-weight-normal pb-4"></legend>
+
+        <!--proj key-->
+        <div class="m-0 form-group">
+            {{ proj_data_form.proj_key.label }}
+            {% if proj_data_form.proj_key.errors %}
+            {{ proj_data_form.proj_key(class="form-control is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in proj_data_form.proj_key.errors %}
+                <span>{{ error }}</span>
+                {% endfor%}
+            </div>
+            {% else %}
+            {{ proj_data_form.proj_key(class="form-control form-control-md", placeholder="pbg-001") }}
+            {% endif %}
+        </div>
+
+        <!--proj title-->
+        <div class="form-group">
+            {{ proj_data_form.proj_title.label }}
+            {% if proj_data_form.proj_title.errors %}
+            {{ proj_data_form.proj_title(class="form-control is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in proj_data_form.proj_title.errors %}
+                <span>{{ error }}</span>
+                {% endfor%}
+            </div>
+            {% else %}
+            {{ proj_data_form.proj_title(class="form-control form-control-md") }}
+            {% endif %}
+        </div>
+
+        <!--aprvd budget-->
+        <div class="form-group">
+            {{ proj_data_form.aprvd_budget.label }}
+            {% if proj_data_form.aprvd_budget.errors %}
+            {{ proj_data_form.aprvd_budget(class="form-control is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in proj_data_form.aprvd_budget.errors %}
+                <span>{{ error }}</span>
+                {% endfor%}
+            </div>
+            {% else %}
+            {{ proj_data_form.aprvd_budget(class="form-control form-control-md") }}
+            {% endif %}
+        </div>
+        <div class="mt-1 form-group">
+            {{ proj_data_form.submit(class="btn btn-lg btn-primary btn-block")}}
+        </div>
+    </fieldset>
+</form>
+
+{% endblock content %}
